@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+ <title>
+  Mirae Bank - Sign In
+ </title>
+ <link href="../css/signin.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="background-overlay">
+</div>
+<main class="login-page">
+ <header class="top-navbar">
+  <a class="nav-logo" href="signin.html">
+   <img alt="Mirae Bank Logo" class="nav-logo-image" src="../Assets/images/mirae logo.png"/>
+   <span class="nav-logo-text">
+      MIRAE BANK
+     </span>
+  </a>
+  <nav class="nav-menu">
+   <a class="nav-link active" href="signin.html">
+    Sign In
+   </a>
+   <a class="nav-link nav-signup" href="signup.html">
+    Sign Up
+   </a>
+  </nav>
+ </header>
+ <section class="login-brand">
+  <div class="brand-frame">
+   <div class="brand-content">
+    <div class="hero-content">
+     <p class="hero-eyebrow">
+      YOUR MONEY. YOUR FUTURE.
+     </p>
+     <h1>
+      Banking that
+      <br/>
+      <strong>
+       stays with you.
+      </strong>
+     </h1>
+     <p class="hero-description">
+      A smarter banking experience built around
+      security, simplicity, and your financial goals.
+     </p>
+    </div>
+    <div class="ambassador">
+     <img alt="Mirae Bank brand ambassador" class="ambassador-image" src="../Assets/images/cha-eun-woo.png"/>
+    </div>
+   </div>
+   <div class="endorsement">
+      <span class="endorsement-line">
+      </span>
+    <span>
+       DISCOVER YOUR POSSIBILITIES
+      </span>
+   </div>
+  </div>
+ </section>
+ <section class="login-panel">
+  <div class="login-frame">
+   <div class="login-card">
+    <!-- Login header -->
+    <div class="login-header">
+     <h1 class="welcome-title">
+      Welcome to Mirae Bank
+     </h1>
+     <p class="eyebrow">
+      WELCOME BACK
+     </p>
+     <h2>
+      Secure Sign-in
+     </h2>
+     <p>
+      Your money, your future. Access your account safely.
+     </p>
+    </div>
+    <!-- Form -->
+    <form id="loginForm" novalidate="">
+     <div class="message" id="loginMessage" role="alert" style="display:none;">
+     </div>
+     <!-- Username -->
+     <div class="form-group">
+      <label for="username">
+       Username
+      </label>
+      <div class="input-wrapper">
+       <input autocomplete="username" id="username" name="username" placeholder="Enter your username" required="" type="text"/>
+      </div>
+      <small class="field-error" id="usernameError">
+      </small>
+     </div>
+     <!-- Password -->
+     <div class="form-group">
+      <div class="label-row">
+       <label for="password">
+        Password
+       </label>
+       <a href="#" id="forgotPassword">
+        Forgot password?
+       </a>
+      </div>
+      <div class="input-wrapper">
+       <input autocomplete="current-password" id="password" name="password" placeholder="Enter your password" required="" type="password"/>
+       <button aria-label="Show password" class="password-toggle" id="togglePassword" type="button">
+        Show
+       </button>
+      </div>
+      <small class="field-error" id="passwordError">
+      </small>
+     </div>
+     <!-- Remember -->
+     <div class="form-options">
+      <label class="remember">
+       <input id="rememberMe" type="checkbox"/>
+       <span>
+          Remember me
+         </span>
+      </label>
+     </div>
+     <!-- Button -->
+     <button class="login-button" id="loginButton" type="submit">
+        <span id="buttonText">
+         Sign In
+        </span>
+      <span class="loader" id="buttonLoader">
+        </span>
+     </button>
+    </form>
+    <p class="signup-link">
+     Don't have an account?
+     <a href="signup.html">
+      Sign up
+     </a>
+    </p>
+    <footer class="login-footer">
+       <span>
+        © 2026 Mirae Bank
+       </span>
+     <span>
+        Your Money • Your Future • Your Control
+       </span>
+    </footer>
+   </div>
+  </div>
+ </section>
+</main>
+<script src="../js/signin.js">
+</script>
+</body>
+</html>

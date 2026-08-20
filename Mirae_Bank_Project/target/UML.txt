@@ -1,0 +1,188 @@
+Mirae Banking Management System Updated UML Class Documentation
+
+========================================
+API / Web Server Layer
+========================================
+
+BankApiServer <>
+
+Attributes: - PORT: int - server: HttpServer
+
+Methods: + start(): void + handleLogin(exchange: HttpExchange): void +
+handleSignup(exchange: HttpExchange): void + handleLogout(exchange:
+HttpExchange): void + handleAccount(exchange: HttpExchange): void +
+handleTransactions(exchange: HttpExchange): void +
+handleDeposit(exchange: HttpExchange): void + handleWithdraw(exchange:
+HttpExchange): void + handleTransfer(exchange: HttpExchange): void
+
+========================================
+Application Entry Layer
+========================================
+
+Main
+
+Attributes: - LOGGER: Logger
+
+Methods: + main(args: String[]): void
+
+========================================
+Service Layer
+========================================
+
+AuthService
+
+Attributes: - authDAO: AuthDAO - accountDAO: AccountDAOImpl
+
+Methods: + login(username: String, password: String): LoginResult +
+signup(fullName: String, username: String, email: String, password:
+String): SignupResult - generateUniqueAccountNumber(): String
+
+TransactionService
+
+Attributes: - accountDAO: AccountDAO - transactionDAO: TransactionDAO
+
+Methods: + deposit(accountNumber: String, amount: BigDecimal):
+Transaction + withdraw(accountNumber: String, amount: BigDecimal):
+Transaction + transfer(fromAccount: String, toAccount: String, amount:
+BigDecimal): TransferResult + findRecentTransactions(accountNumber:
+String, limit: int): List
+
+========================================
+DAO Layer
+========================================
+
+AccountDAO <>
+
+Methods: + createAccount(account: Account): void +
+findByAccountNumber(accountNumber: String): Optional +
+findAllAccounts(): List + updateBalance(accountNumber: String, balance:
+BigDecimal): void
+
+TransactionDAO <>
+
+Methods: + save(transaction: Transaction): void +
+findByAccountNumber(accountNumber: String): List +
+findRecentTransactions(accountNumber: String, limit: int): List
+
+AuthDAO
+
+Methods: + findByUsername(username: String): Optional +
+createUser(username: String, passwordHash: String, passwordSalt: String,
+accountNumber: String): void
+
+========================================
+DAO Implementation Layer
+========================================
+
+AccountDAOImpl implements AccountDAO
+
+Attributes: - LOGGER: Logger
+
+Methods: + createAccount(account: Account): void +
+findByAccountNumber(accountNumber: String): Optional +
+findAllAccounts(): List + updateBalance(accountNumber: String, balance:
+BigDecimal): void
+
+TransactionDAOImpl implements TransactionDAO
+
+Attributes: - LOGGER: Logger
+
+Methods: + save(transaction: Transaction): void +
+findByAccountNumber(accountNumber: String): List +
+findRecentTransactions(accountNumber: String, limit: int): List
+
+========================================
+Model Layer
+========================================
+
+Account
+
+Attributes: - accountId: Long - accountNumber: String - accountName:
+String - balance: BigDecimal - createdAt: LocalDateTime - updatedAt:
+LocalDateTime
+
+Transaction
+
+Attributes: - transactionId: Long - accountNumber: String -
+transactionType: TransactionType - amount: BigDecimal - balanceAfter:
+BigDecimal - referenceNumber: String - remarks: String - createdAt:
+LocalDateTime
+
+========================================
+Utility Layer
+========================================
+
+PasswordUtil
+
+Methods: + generateSalt(): String + hashPassword(password: String, salt:
+String): String + verifyPassword(password: String, salt: String,
+expectedHash: String): boolean
+
+========================================
+Configuration Layer
+========================================
+
+DBConnection
+
+Methods: + getConnection(): Connection
+
+PropertyLoader
+
+Attributes: - properties: Properties
+
+Methods: + getInstance(): PropertyLoader + getProperty(key: String):
+String
+
+========================================
+Exception Layer
+========================================
+
+AuthenticationException
+
+Methods: + AuthenticationException(reason: String) +
+AuthenticationException(message: String, cause: Throwable)
+
+UnauthorizedException
+
+Methods: + UnauthorizedException(reason: String) +
+UnauthorizedException(message: String, cause: Throwable)
+
+InvalidAccountException
+
+Methods: + InvalidAccountException(reason: String) +
+InvalidAccountException(message: String, cause: Throwable)
+
+DuplicateAccountException
+
+Methods: + DuplicateAccountException(accountNumber: String) +
+DuplicateAccountException(message: String, cause: Throwable)
+
+InvalidAmountException
+
+Methods: + InvalidAmountException(reason: String) +
+InvalidAmountException(message: String, cause: Throwable)
+
+InvalidTransactionException
+
+Methods: + InvalidTransactionException(reason: String) +
+InvalidTransactionException(message: String, cause: Throwable)
+
+AccountNotFoundException
+
+Methods: + AccountNotFoundException(accountNumber: String) +
+AccountNotFoundException(message: String, cause: Throwable)
+
+InsufficientBalanceException
+
+Attributes: - availableBalance: BigDecimal - requestAmount: BigDecimal
+
+Methods: + InsufficientBalanceException(availableBalance: BigDecimal,
+requestAmount: BigDecimal)
+
+ServerStartupException
+
+Methods: + ServerStartupException(reason: String) +
+ServerStartupException(message: String, cause: Throwable)
+
+
+

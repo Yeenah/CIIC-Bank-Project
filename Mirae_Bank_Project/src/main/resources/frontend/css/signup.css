@@ -1,0 +1,614 @@
+/*
+==================================================
+MIRAE BANK SIGN UP
+FULL RESPONSIVE GLASS DESIGN
+LOGO IMAGE UPDATE
+COMPACT HEIGHT VERSION
+==================================================
+*/
+
+/* Section */
+
+*{
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+html,
+body{
+    width: 100%;
+
+    min-height: 100%;
+
+    font-family:
+
+            "Segoe UI",
+            Arial,
+            sans-serif;
+
+    color:white;
+
+}
+
+/* Section */
+
+body{
+    overflow:auto;
+
+    background:
+
+            linear-gradient(
+
+                    135deg,
+
+                    #0b2f2f,
+
+                    #071818
+
+            );
+
+}
+
+/* Section */
+
+.auth-container{
+    width: 100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    
+
+    align-items:flex-start;
+
+    justify-content:center;
+
+    padding:
+
+            25px 20px;
+
+}
+
+/* Section */
+
+.auth-card{
+    position:relative;
+
+    width: 100%;
+
+    max-width:500px;
+
+    
+
+    padding:
+
+            15px 38px 12px;
+
+    border-radius:12px;
+
+    background:
+
+            rgba(80,120,115,.28);
+
+    border:
+
+            1px solid rgba(255,255,255,.30);
+
+    backdrop-filter:
+
+            blur(30px);
+
+    -webkit-backdrop-filter:
+
+            blur(30px);
+
+    box-shadow:
+
+            0 30px 70px rgba(0,0,0,.35),
+
+            inset 0 1px 0 rgba(255,255,255,.15);
+
+}
+
+.auth-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:10%;
+
+    width:80%;
+
+    height:1px;
+
+    background:
+
+            linear-gradient(
+
+                    90deg,
+
+                    transparent,
+
+                    rgba(255,255,255,.5),
+
+                    transparent
+
+            );
+
+}
+
+/* Section */
+
+.brand{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+/* UPDATED LOGO IMAGE */
+
+.brand-logo{
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+    display:block;
+
+    filter:
+
+            drop-shadow(
+
+                    0 2px 5px rgba(0,0,0,.35)
+
+            );
+
+}
+
+.brand strong{
+    display:block;
+
+    font-size:14px;
+
+    letter-spacing:1.5px;
+
+}
+
+.brand span{
+    display:block;
+
+    margin-top:2px;
+
+    color:
+
+            rgba(255,255,255,.45);
+
+    font-size:9px;
+
+}
+
+/* Section */
+
+.page-header{
+    margin-bottom:15px;
+
+}
+
+.eyebrow{
+    margin-bottom:8px;
+
+    color:#bafff8;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+}
+
+.page-header h1{
+    margin-bottom:8px;
+
+    font-size:30px;
+
+    line-height:1.15;
+
+}
+
+.subtitle{
+    color:
+
+            rgba(255,255,255,.65);
+
+    font-size:11px;
+
+}
+
+/* Section */
+
+.message{
+    padding:10px 12px;
+
+    margin-bottom:10px;
+
+    border-radius:7px;
+
+    font-size:10px;
+
+}
+
+.message.error{
+    background:
+
+            rgba(255,80,80,.15);
+
+    border:
+
+            1px solid rgba(255,150,150,.25);
+
+}
+
+.message.success{
+    background:
+
+            rgba(0,120,100,.20);
+
+    border:
+
+            1px solid rgba(120,255,220,.25);
+
+}
+
+/* Section */
+
+.field{
+    margin-bottom:12px;
+
+}
+
+.field label{
+    display:block;
+
+    margin-bottom:5px;
+
+    font-size:10px;
+
+    color:
+
+            rgba(255,255,255,.8);
+
+}
+
+.input-wrapper{
+    position:relative;
+
+}
+
+.input-wrapper input{
+    width: 100%;
+
+    height:40px;
+
+    margin-top:5px;
+
+    border: none;
+
+    outline: none;
+
+    padding:
+
+            0 15px;
+
+    border-radius:3px;
+
+    background:
+
+            rgba(255,255,255,.90);
+
+    color:#203837;
+
+    font-size:11px;
+
+}
+
+.input-wrapper input:focus{
+    box-shadow:
+
+            0 0 0 3px rgba(186,255,248,.15);
+
+}
+
+.input-wrapper input::placeholder{
+    color:
+
+            rgba(0,0,0,.45);
+
+}
+
+.field-hint{
+    display:block;
+
+    margin-top:4px;
+
+    color:
+
+            rgba(255,255,255,.45);
+
+    font-size:9px;
+
+}
+
+/* Section */
+
+.primary-button{
+    width: 100%;
+
+    height:50px;
+
+    margin-top:18px;
+
+    border: none;
+
+    border-radius:999px;
+
+    background: black;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    transition:.3s ease;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.30);
+
+}
+
+.primary-button:hover{
+    background:#123838;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.4);
+
+}
+
+.primary-button:active{
+    transform:translateY(0);
+
+}
+
+.primary-button:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* Section */
+
+.login-link{
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:10px;
+
+    color:
+
+            rgba(255,255,255,.60);
+
+}
+
+.login-link a{
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+
+}
+
+.footer{
+    margin-top:18px;
+
+    padding-top:10px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:8px;
+
+    color:
+
+            rgba(255,255,255,.45);
+
+    border-top:
+
+            1px solid rgba(255,255,255,.15);
+
+}
+
+/* Section */
+
+@media(max-height:800px){
+    .auth-container{
+        padding-top:15px;
+
+        padding-bottom:15px;
+
+    }
+
+    .auth-card{
+        transform:scale(.92);
+
+        transform-origin:center top;
+
+    }
+
+}
+
+/* Section */
+
+@media(max-width:900px){
+    body{
+        overflow:auto;
+
+    }
+
+    .auth-container{
+        min-height:100vh;
+
+        padding:
+
+                30px 20px;
+
+        align-items:flex-start;
+
+    }
+
+    .auth-card{
+        width: 100%;
+
+        max-width:500px;
+
+        padding:
+
+                15px 30px 12px;
+
+    }
+
+}
+
+/* Section */
+
+@media(max-width:600px){
+    .auth-container{
+        padding:
+
+                25px 15px;
+
+    }
+
+    .auth-card{
+        padding:
+
+                15px 23px 12px;
+
+        border-radius:10px;
+
+    }
+
+    .brand{
+        margin-bottom:15px;
+
+    }
+
+    .brand-logo{
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .page-header h1{
+        font-size:26px;
+
+    }
+
+    .field{
+        margin-bottom:10px;
+
+    }
+
+    .footer{
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:8px;
+
+        text-align:center;
+
+    }
+
+}
+
+/* Section */
+
+@media(max-width:380px){
+    .auth-container{
+        padding:
+
+                20px 10px;
+
+    }
+
+    .auth-card{
+        padding:
+
+                12px 18px 10px;
+
+    }
+
+    .brand-logo{
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .page-header h1{
+        font-size:24px;
+
+    }
+
+    .input-wrapper input{
+        height:38px;
+
+    }
+
+    .primary-button{
+        height:38px;
+
+    }
+
+}
+
+/* Section */
+
+button:focus-visible,
+
+a:focus-visible,
+
+input:focus-visible{
+    outline:
+
+            2px solid rgba(255,255,255,.75);
+
+    outline-offset:3px;
+
+}

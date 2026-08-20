@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+ <title>
+  Mirae Bank - Dashboard
+ </title>
+ <link href="../css/dashboard.css" rel="stylesheet"/>
+ <script src="https://unpkg.com/lucide@latest">
+ </script>
+</head>
+<body>
+<div class="app-shell">
+ <aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+   <!--            <div class="brand-mark">⌂</div>-->
+   <img alt="Mirae Bank Logo" class="dashboard-logo" src="../Assets/images/mirae logo.png"/>
+   <div>
+    <strong>
+     Mirae Bank
+    </strong>
+    <span>
+       Digital Banking
+      </span>
+   </div>
+  </div>
+  <nav class="navigation">
+   <p class="nav-label">
+    MAIN
+   </p>
+   <button class="nav-item active" data-section="dashboard">
+      <span class="nav-icon">
+       <i data-lucide="layout-dashboard">
+       </i>
+      </span>
+    Dashboard
+   </button>
+   <button class="nav-item" data-section="accounts">
+      <span class="nav-icon">
+       <i data-lucide="wallet">
+       </i>
+      </span>
+    Accounts
+   </button>
+   <button class="nav-item" data-section="listAccounts">
+      <span class="nav-icon">
+       <i data-lucide="users">
+       </i>
+      </span>
+    List Accounts
+   </button>
+   <button class="nav-item" data-section="transactions">
+      <span class="nav-icon">
+       <i data-lucide="arrow-left-right">
+       </i>
+      </span>
+    Transactions
+   </button>
+   <p class="nav-label">
+    BANKING
+   </p>
+   <button class="nav-item" data-section="deposit">
+      <span class="nav-icon">
+       <i data-lucide="circle-plus">
+       </i>
+      </span>
+    Deposit
+   </button>
+   <button class="nav-item" data-section="withdraw">
+      <span class="nav-icon">
+       <i data-lucide="banknote-arrow-down">
+       </i>
+      </span>
+    Withdraw
+   </button>
+   <button class="nav-item" data-section="transfer">
+      <span class="nav-icon">
+       <i data-lucide="send">
+       </i>
+      </span>
+    Transfer
+   </button>
+   <button class="nav-item" data-section="history">
+      <span class="nav-icon">
+       <i data-lucide="history">
+       </i>
+      </span>
+    Transaction History
+   </button>
+   <button class="nav-item" data-section="statement">
+      <span class="nav-icon">
+       <i data-lucide="file-text">
+       </i>
+      </span>
+    Mini Statement
+   </button>
+   <p class="nav-label">
+    SYSTEM
+   </p>
+   <button class="nav-item" data-section="settings">
+      <span class="nav-icon">
+       <i data-lucide="settings">
+       </i>
+      </span>
+    Settings
+   </button>
+   <button class="nav-item" data-section="help">
+      <span class="nav-icon">
+       <i data-lucide="circle-help">
+       </i>
+      </span>
+    Help
+   </button>
+  </nav>
+  <button class="logout-button" id="logoutButton">
+     <span class="nav-icon">
+      <i data-lucide="log-out">
+      </i>
+     </span>
+   Logout
+  </button>
+ </aside>
+ <main class="main-content">
+  <!-- Topbar -->
+  <header class="topbar">
+   <button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+    ☰
+   </button>
+   <div class="topbar-title">
+      <span>
+       Secure Online Banking
+      </span>
+   </div>
+   <div class="toast" id="toast">
+   </div>
+   <div class="profile">
+    <div class="profile-avatar" id="profileAvatar">
+     --
+    </div>
+    <div class="profile-info">
+     <strong id="profileName">
+      Loading...
+     </strong>
+     <span>
+        Customer
+       </span>
+    </div>
+   </div>
+  </header>
+  <div class="content">
+   <section class="page-section active" id="dashboard">
+    <div class="welcome-row">
+     <div>
+      <p class="eyebrow">
+       PERSONAL BANKING
+      </p>
+      <h1>
+       Good day,
+       <span id="welcomeName">
+          Customer
+         </span>
+       .
+      </h1>
+      <p class="muted">
+       Here's an overview of your banking activity.
+      </p>
+     </div>
+
+     <div class="date-card">
+        <span>
+         Today
+        </span>
+      <strong id="currentDate">
+       --
+      </strong>
+      <span id="currentTime">
+         --
+        </span>
+     </div>
+    </div>
+    <!-- ERROR -->
+    <div class="message error" id="errorMessage" style="display:none;">
+    </div>
+    <!-- SECURITY -->
+    <div class="security-banner">
+     <div class="banner-icon">
+      ✓
+     </div>
+     <div>
+      <strong>
+       Your banking is secure
+      </strong>
+      <p>
+       Keep your login information private and always
+       log out when you finish.
+      </p>
+     </div>
+    </div>
+    <!-- BALANCES -->
+    <div class="balance-grid">
+     <article class="balance-card primary">
+      <div class="card-top">
+         <span>
+          Total Balance
+         </span>
+       <span class="card-icon">
+          ₱
+         </span>
+      </div>
+      <h2 id="totalBalance">
+       ₱0.00
+      </h2>
+      <div class="account-number" id="primaryAccountNumber">
+       Account: --
+      </div>
+     </article>
+     <article class="balance-card">
+      <div class="card-top">
+         <span>
+          Account Balance
+         </span>
+       <span class="card-icon">
+          S
+         </span>
+      </div>
+      <h2 id="savingsBalance">
+       ₱0.00
+      </h2>
+      <p class="balance-subtitle">
+       Available balance
+      </p>
+     </article>
+     <article class="balance-card">
+      <div class="card-top">
+         <span>
+          Account Number
+         </span>
+       <span class="card-icon">
+          #
+         </span>
+      </div>
+      <h2 id="checkingBalance" style="font-size: 20px;">
+       --
+      </h2>
+      <p class="balance-subtitle">
+       Current account
+      </p>
+     </article>
+    </div>
+    <!-- BANKING SERVICES -->
+    <div class="section-heading">
+     <div>
+      <h2>
+       Banking Services
+      </h2>
+      <p>
+       Perform common banking operations.
+      </p>
+     </div>
+    </div>
+    <div class="quick-actions">
+     <button class="action-card" data-section="accounts">
+        <span class="action-icon">
+         #
+        </span>
+      <strong>
+       My Account
+      </strong>
+      <small>
+       View account information
+      </small>
+     </button>
+     <button class="action-card" data-section="deposit">
+        <span class="action-icon">
+         ↑
+        </span>
+      <strong>
+       Deposit
+      </strong>
+      <small>
+       Add money to your account
+      </small>
+     </button>
+     <button class="action-card" data-section="withdraw">
+        <span class="action-icon">
+         ↓
+        </span>
+      <strong>
+       Withdraw
+      </strong>
+      <small>
+       Withdraw available funds
+      </small>
+     </button>
+     <button class="action-card" data-section="transfer">
+        <span class="action-icon">
+         ⇄
+        </span>
+      <strong>
+       Transfer
+      </strong>
+      <small>
+       Send money to another account
+      </small>
+     </button>
+    </div>
+    <!-- DASHBOARD COLUMNS -->
+    <div class="dashboard-columns">
+     <!-- RECENT TRANSACTIONS -->
+     <section class="panel">
+      <div class="panel-header">
+       <div>
+        <h2>
+         Recent Transactions
+        </h2>
+        <p>
+         Your latest banking activity
+        </p>
+       </div>
+       <button class="text-button" data-section="history">
+        View all
+       </button>
+      </div>
+      <div class="transaction-list" id="recentTransactions">
+       <p>
+        Loading transactions...
+       </p>
+      </div>
+     </section>
+     <!-- ACCOUNT SUMMARY -->
+     <section class="panel account-summary">
+      <div class="panel-header">
+       <div>
+        <h2>
+         Account Summary
+        </h2>
+        <p>
+         Your current account
+        </p>
+       </div>
+       <button class="text-button" data-section="accounts">
+        View account
+       </button>
+      </div>
+      <div class="account-summary-item">
+       <div class="account-type">
+          <span class="mini-icon">
+           S
+          </span>
+        <div>
+         <strong id="summaryAccountName">
+          Loading...
+         </strong>
+         <small id="summaryAccountNumber">
+          --
+         </small>
+        </div>
+       </div>
+       <strong id="summaryBalance">
+        ₱0.00
+       </strong>
+      </div>
+     </section>
+    </div>
+   </section>
+   <section class="page-section" id="accounts">
+    <div class="page-title">
+     <p class="eyebrow">
+      BANK ACCOUNT
+     </p>
+     <h1>
+      My Account
+     </h1>
+     <p>
+      View your actual account information.
+     </p>
+    </div>
+    <div class="account-cards">
+     <article class="large-account-card">
+      <div>
+         <span class="account-chip">
+          ACTIVE ACCOUNT
+         </span>
+       <h2 id="accountPageBalance">
+        ₱0.00
+       </h2>
+       <p>
+        Account Number:
+        <strong id="accountPageNumber">
+         --
+        </strong>
+       </p>
+       <p>
+        Account Name:
+        <strong id="accountPageName">
+         --
+        </strong>
+       </p>
+      </div>
+      <span class="account-symbol">
+         S
+        </span>
+     </article>
+    </div>
+    <div class="panel form-panel">
+     <div class="panel-header">
+      <div>
+       <h2>
+        Account Information
+       </h2>
+       <p>
+        Here’s your current balance and account information.
+       </p>
+      </div>
+     </div>
+     <div class="bank-form">
+      <div class="field">
+       <label>
+        Account Number
+       </label>
+       <input id="accountInfoNumber" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Account Name
+       </label>
+       <input id="accountInfoName" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Current Balance
+       </label>
+       <input id="accountInfoBalance" readonly="" type="text"/>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="page-section" id="listAccounts">
+    <div class="page-title">
+     <p class="eyebrow">
+      BANK ACCOUNTS
+     </p>
+     <h1>
+      List Accounts
+     </h1>
+     <p>
+      View all registered bank accounts.
+     </p>
+    </div>
+    <div class="panel table-panel">
+     <div class="panel-header">
+      <div>
+       <h2>
+        Registered Accounts
+       </h2>
+       <p>
+        All accounts stored in the banking system.
+       </p>
+      </div>
+     </div>
+     <div class="table-wrapper">
+      <table>
+       <thead>
+       <tr>
+        <th>
+         Account Number
+        </th>
+        <th>
+         Account Holder
+        </th>
+        <th>
+         Balance
+        </th>
+       </tr>
+       </thead>
+       <tbody id="accountListTable">
+       <tr>
+        <td colspan="3">
+         Loading accounts...
+        </td>
+       </tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="statement-header">
+      <div>
+         <span>
+          Total Accounts
+         </span>
+      </div>
+      <strong id="totalAccounts">
+       0
+      </strong>
+     </div>
+    </div>
+   </section>
+   <section class="page-section" id="transactions">
+    <div class="page-title">
+     <p class="eyebrow">
+      TRANSACTIONS
+     </p>
+     <h1>
+      Banking Transactions
+     </h1>
+     <p>
+      Choose an operation to manage your money.
+     </p>
+    </div>
+    <div class="transaction-options">
+     <button class="operation-card" data-section="deposit">
+        <span>
+         ↑
+        </span>
+      <strong>
+       Deposit
+      </strong>
+      <small>
+       Add money to your account.
+      </small>
+     </button>
+     <button class="operation-card" data-section="withdraw">
+        <span>
+         ↓
+        </span>
+      <strong>
+       Withdraw
+      </strong>
+      <small>
+       Withdraw money from your account.
+      </small>
+     </button>
+     <button class="operation-card" data-section="transfer">
+        <span>
+         ⇄
+        </span>
+      <strong>
+       Transfer
+      </strong>
+      <small>
+       Transfer money to another account.
+      </small>
+     </button>
+    </div>
+   </section>
+   <section class="page-section" id="deposit">
+    <div class="page-title">
+     <p class="eyebrow">
+      BANKING OPERATION
+     </p>
+     <h1>
+      Deposit Money
+     </h1>
+     <p>
+      Add money to your current account.
+     </p>
+    </div>
+    <div class="panel operation-panel">
+     <form class="bank-form operation-form" id="depositForm">
+      <div class="field">
+       <label>
+        Account Number
+       </label>
+       <input id="depositAccount" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Amount
+       </label>
+       <input id="depositAmount" min="0.01" placeholder="₱0.00" required="" step="0.01" type="number"/>
+      </div>
+      <button class="primary-button" type="submit">
+       Confirm Deposit
+      </button>
+     </form>
+    </div>
+   </section>
+   <section class="page-section" id="withdraw">
+    <div class="page-title">
+     <p class="eyebrow">
+      BANKING OPERATION
+     </p>
+     <h1>
+      Withdraw Money
+     </h1>
+     <p>
+      Withdraw available funds from your account.
+     </p>
+    </div>
+    <div class="panel operation-panel">
+     <form class="bank-form operation-form" id="withdrawForm">
+      <div class="field">
+       <label>
+        Account Number
+       </label>
+       <input id="withdrawAccount" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Amount
+       </label>
+       <input id="withdrawAmount" min="0.01" placeholder="₱0.00" required="" step="0.01" type="number"/>
+      </div>
+      <button class="primary-button" type="submit">
+       Confirm Withdrawal
+      </button>
+     </form>
+    </div>
+   </section>
+   <section class="page-section" id="transfer">
+    <div class="page-title">
+     <p class="eyebrow">
+      BANKING OPERATION
+     </p>
+     <h1>
+      Transfer Money
+     </h1>
+     <p>
+      Transfer money from your account to another account.
+     </p>
+    </div>
+    <div class="panel operation-panel">
+     <form class="bank-form operation-form" id="transferForm">
+      <div class="field">
+       <label>
+        From Account
+       </label>
+       <input id="transferFromAccount" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        To Account
+       </label>
+       <input id="receiverAccountNumber" placeholder="Destination account number" required="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Amount
+       </label>
+       <input id="transferAmount" min="0.01" placeholder="₱0.00" required="" step="0.01" type="number"/>
+      </div>
+      <button class="primary-button" type="submit">
+       Confirm Transfer
+      </button>
+     </form>
+    </div>
+   </section>
+   <section class="page-section" id="history">
+    <div class="page-title">
+     <p class="eyebrow">
+      TRANSACTION HISTORY
+     </p>
+     <h1>
+      Complete Transaction History
+     </h1>
+     <p>
+      Review your recent account activity.
+     </p>
+    </div>
+    <div class="panel table-panel">
+     <div class="table-toolbar">
+      <input id="transactionSearch" placeholder="Search transactions..." type="search"/>
+      <select id="transactionFilter">
+       <option value="all">
+        All transactions
+       </option>
+       <option value="deposit">
+        Deposits
+       </option>
+       <option value="withdraw">
+        Withdrawals
+       </option>
+       <option value="transfer">
+        Transfers
+       </option>
+      </select>
+     </div>
+     <div class="table-wrapper">
+      <table>
+       <thead>
+       <tr>
+        <th>
+         Reference
+        </th>
+        <th>
+         Date
+        </th>
+        <th>
+         Type
+        </th>
+        <th>
+         Amount
+        </th>
+        <th>
+         Balance After
+        </th>
+        <th>
+         Remarks
+        </th>
+       </tr>
+       </thead>
+       <tbody id="historyTable">
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </section>
+   <section class="page-section" id="statement">
+    <div class="page-title">
+     <p class="eyebrow">
+      MINI STATEMENT
+     </p>
+     <h1>
+      Latest 10 Transactions
+     </h1>
+     <p>
+      Your most recent banking transactions.
+     </p>
+    </div>
+    <div class="panel table-panel">
+     <div class="statement-header">
+      <div>
+       <strong id="statementName">
+        Loading...
+       </strong>
+       <span id="statementAccount">
+          --
+         </span>
+      </div>
+      <strong id="statementBalance">
+       ₱0.00
+      </strong>
+     </div>
+     <div class="table-wrapper">
+      <table>
+       <thead>
+       <tr>
+        <th>
+         Date
+        </th>
+        <th>
+         Reference
+        </th>
+        <th>
+         Description
+        </th>
+        <th>
+         Type
+        </th>
+        <th>
+         Amount
+        </th>
+       </tr>
+       </thead>
+       <tbody id="statementTable">
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </section>
+   <section class="page-section" id="settings">
+    <div class="page-title">
+     <p class="eyebrow">
+      SYSTEM
+     </p>
+     <h1>
+      Settings
+     </h1>
+     <p>
+      Current account information.
+     </p>
+    </div>
+    <div class="panel form-panel">
+     <div class="bank-form">
+      <div class="field">
+       <label>
+        Account Name
+       </label>
+       <input id="settingsAccountName" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Account Number
+       </label>
+       <input id="settingsAccountNumber" readonly="" type="text"/>
+      </div>
+      <div class="field">
+       <label>
+        Current Balance
+       </label>
+       <input id="settingsBalance" readonly="" type="text"/>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="page-section" id="help">
+    <div class="page-title">
+     <p class="eyebrow">
+      SUPPORT
+     </p>
+     <h1>
+      Help &amp; Information
+     </h1>
+     <p>
+      Mirae Bank Banking Management System.
+     </p>
+    </div>
+    <div class="help-grid">
+     <article class="panel help-card">
+        <span>
+         1
+        </span>
+      <h2>
+       Account
+      </h2>
+      <p>
+       View your account details, current balance, and
+       account information securely.
+      </p>
+     </article>
+     <article class="panel help-card">
+        <span>
+         2
+        </span>
+      <h2>
+       Deposit
+      </h2>
+      <p>
+       Add funds to your account and update your
+       available balance instantly.
+      </p>
+     </article>
+     <article class="panel help-card">
+        <span>
+         3
+        </span>
+      <h2>
+       Withdraw
+      </h2>
+      <p>
+       Withdraw available funds from your account
+       safely and conveniently.
+      </p>
+     </article>
+     <article class="panel help-card">
+        <span>
+         4
+        </span>
+      <h2>
+       Transactions
+      </h2>
+      <p>
+       Review your transaction history and monitor your
+       recent banking activities.
+      </p>
+     </article>
+    </div>
+   </section>
+  </div>
+ </main>
+</div>
+<script src="../js/dashboard.js">
+</script>
+<script>
+ lucide.createIcons();
+</script>
+</body>
+</html>
